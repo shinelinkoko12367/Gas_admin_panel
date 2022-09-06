@@ -1,0 +1,23 @@
+.ttr {
+    padding: 20px;
+  }
+ .nav1 {
+  background-color:blue;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  margin: 10px;
+  text-align: center;  
+  }
+  .nav1:hover{
+    background-color:rgb(39, 3, 125); 
+    color: black; 
+  }
+  .Pbutton{
+    background-color:blue;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    text-align: center;
+
+  }
