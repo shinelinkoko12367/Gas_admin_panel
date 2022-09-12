@@ -18,7 +18,6 @@ function TownCreate() {
         return; 
     }
     
-    console.log(selvalue)
     useEffect (() =>{
         posts();
     }, []);

@@ -9,12 +9,13 @@ import StationCreat1 from './StationCreate';
 function Station() {
   return (
     <div>
-       <Container className='ttr'>
+       <Container className='ttr '>
+  
       <Row md={12}>
-        <Col md={4}>
+        <Col md={3}>
           <StationCreat1 />
         </Col>
-        <Col md={8}>
+        <Col md={9}>
             
             <StationList />
           

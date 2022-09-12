@@ -2,22 +2,37 @@ import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { getTownship } from "../../services/Township.service";
 import Button from 'react-bootstrap/Button';
+import TownShipTablExpandComponent from "../../components/TownShipTablExpandComponent";
 
 const TwonTable = () => {
     const [data,setData] = useState([]);
+    const [isRefresh, setIsRefresh] = useState(true);
     const posts = async () =>{
         const response = await getTownship();
         setData(response.townships.data);
+        setIsRefresh(false);
         return; 
     }
     
-    
+    const retrive = (e) =>{
+        setIsRefresh(e);
+        
+    }
     useEffect (() =>{
-        posts();
-    }, []);
+        if(isRefresh){
+            posts();
+        }
+    }, [isRefresh]);
+   
     return (
             <div className='container' >
-                <DataTable className="striped bordered hover" columns={columns} data={data}/>
+                <DataTable
+                expandableRows
+                expandableRowsComponent={TownShipTablExpandComponent}
+                expandableRowsComponentProps={{"refresh" : (e) => retrive(e)}}
+                className="striped bordered hover"
+                columns={columns}
+                data={data}/>
              
              
             </div>
@@ -32,13 +47,13 @@ const TwonTable = () => {
             selector: (row, index) => index + 1,
             sortable: true,
     
-            width: '60px'
+          
         },
         {
             name: <span>Township Name</span>,
             selector: (row, index) => row.name,
             sortable: true,
-            width: '150px'
+    
         },
         {
             name: <span>Action</span>,
@@ -51,7 +66,7 @@ const TwonTable = () => {
                 </>
                 
             ),
-            width: '300px'
+      
         },
 
     ]

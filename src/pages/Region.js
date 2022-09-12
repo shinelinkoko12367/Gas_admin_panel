@@ -5,8 +5,11 @@ import Col from 'react-bootstrap/Col';
 import RegionCreate from './RegionCreate'
 import RegionList from './RegionList';
 import Table from './Table';
+import Edit from './Edit';
 
 function Region() {
+
+  
   return (
     <Container className='ttr'>
       <Row md={12}>
@@ -15,9 +18,9 @@ function Region() {
         </Col>
         <Col md={8}>
             <RegionList />
-            
-          
+
         </Col>
+        
       </Row>
     </Container>
   )

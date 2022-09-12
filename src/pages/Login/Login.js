@@ -3,9 +3,12 @@ import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/auth.service';
 
 const Login = () => {
+
+  const navigate = useNavigate()
     const [email , setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,9 +17,14 @@ const Login = () => {
             email : email,
             password : password
         }
-
-        const response = await login(requestBody);
-
+        console.log(requestBody);
+        // const response = await login(requestBody);
+        // console.log(response.authorisation.token);
+        // localStorage.setItem('token' , response.authorisation.token);
+        // if(response.authorisation.token === null) {
+        //   navigate('/login')
+        // }
+        navigate('/')
     }
 
   return (

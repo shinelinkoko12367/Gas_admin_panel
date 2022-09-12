@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from "./api.service";
+import { getRequest, postRequest, putRequest } from "./api.service";
 const url = '/townships';
 
 export const getTownship = async () => {
@@ -14,4 +14,11 @@ export const TownshipCreate = async (requestBody) => {
         return response;
     }
     return console.log('error');
+}
+export const updateTownship = async(id, requestBody) => {
+    const response = await putRequest(`${url}/${id}`, requestBody);
+    if(response) {
+        return response;
+    }
+    console.log('error')
 }

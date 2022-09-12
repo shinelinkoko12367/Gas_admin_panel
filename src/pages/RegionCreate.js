@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import  {Main} from '../assets/css/Main.css'
 import { createRegion } from '../services/Region.service';
-
 
 function RegionCreate() {
     const [region, setRegion] = useState('');
@@ -14,8 +12,8 @@ function RegionCreate() {
             name: region
         }
         const response = await createRegion(requestBody);
+        console.log(response)
         if(response && response.status === 201)
-        
         {
             return setMessage('success');
         }

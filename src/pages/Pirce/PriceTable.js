@@ -2,22 +2,38 @@ import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { getPirce, getPosts } from "../../services/Price.service";
 import Button from 'react-bootstrap/Button';
+import PriceTablExpandComponent from "../../components/PriceTablExpandComponent";
 
 const PriceTable = () => {
     const [data,setData] = useState([]);
+    const [isRefresh, setIsRefresh] = useState(true);
     const posts = async () =>{
         const response = await getPirce();
         setData(response.regions.data);
+        setIsRefresh(false);
         return; 
     }
     
     
+    const retrive = (e) => {
+        setIsRefresh(e);
+    }
+    
+    
     useEffect (() =>{
-        posts();
-    }, []);
+        if(isRefresh){
+            posts();
+        }
+    }, [isRefresh]);
     return (
             <div className='container' >
-                <DataTable className="striped bordered hover" columns={columns} data={data}/>
+                <DataTable
+                expandableRows
+                expandableRowsComponent={PriceTablExpandComponent}
+                expandableRowsComponentProps={{"refresh" : (e) => retrive(e)}}
+                className="striped bordered hover" 
+                columns={columns} 
+                data={data}/>
              
              
             </div>
@@ -30,28 +46,26 @@ const PriceTable = () => {
         {
             name: <span>No</span>,
             selector: (row, index) => index + 1,
-            sortable: true,
+            
     
-            width: '60px'
+
         },
         {
-            name: <span>Station</span>,
-            selector: (row, index) => row.station_id,
-            sortable: true,
-    
-            width: '150px'
+            name: <span>Date</span>,
+            selector: (row, index) => row.date,
+           
+
         },
         {
-            name: <span>Gas</span>,
+            name: <span>Fuels</span>,
             selector: (row, index) => row.fuel_type,
-            sortable: true,
-            width: '150px'
+            
+
         },
         {
             name: <span>Price</span>,
             selector: (row) => row.price,
-            sortable: true,
-            width: '150px'
+
         },
         {
             name: <span>Action</span>,
@@ -62,7 +76,7 @@ const PriceTable = () => {
                 </>
                 
             ),
-            width: '200px'
+  
         },
 
     ]

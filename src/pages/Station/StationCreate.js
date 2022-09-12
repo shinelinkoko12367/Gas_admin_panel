@@ -25,7 +25,6 @@ function StationCreate1() {
     
     const [data,setData] = useState([]);
     const [selvalue, setSelvalue] = useState(0);
-
     const fruits = [];
     const error = [];
    
@@ -86,8 +85,6 @@ function StationCreate1() {
             latitude : latitude,
             available_fuel : fruits
         }
-          
-        console.log(checked)
         const response = await StationCreate(requestBody);
         if(response && response.status === 201)
         {
